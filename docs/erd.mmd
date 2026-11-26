@@ -1,0 +1,41 @@
+erDiagram
+    users ||--o{ orders : places
+    orders ||--o{ order_Item : contains
+    products ||--o{ order_Item : referenced_by
+    users {
+        uuid id PK
+        varchar name
+        varchar email UK
+        varchar password
+        boolean isActive
+        enum role
+        timestamp createAt
+        timestamp updateAt
+    }
+    orders {
+        integer id PK
+        number userId FK "Declared number; referenced users.id is uuid"
+        enum status
+        float totalAmount
+        timestamp createAt
+    }
+    products {
+        integer id PK
+        varchar name
+        varchar description "nullable"
+        float price
+        integer stock
+        varchar imageUrl "nullable"
+        timestamp createAt
+        timestamp updateAt
+    }
+    order_Item {
+        integer id PK
+        integer orderId FK
+        integer productId FK
+        integer quantity
+        float price
+    }
+%% Actual OrderItem table name: order-Item
+%% orders -> order-Item ON DELETE CASCADE
+%% products -> order-Item ON DELETE RESTRICT
