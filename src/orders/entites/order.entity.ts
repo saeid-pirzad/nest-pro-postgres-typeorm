@@ -27,8 +27,8 @@ export class Order {
   @JoinColumn({ name: 'userId' })
   user: Relation<User>;
 
-  @Column('uuid')
-  userId: string;
+  @Column()
+  userId: number;
 
   @Column({ type: 'enum', enum: orderStatus, default: orderStatus.PENDING })
   status: orderStatus;
