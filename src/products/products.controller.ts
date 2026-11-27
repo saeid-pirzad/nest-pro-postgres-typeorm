@@ -11,13 +11,16 @@ import {
 import { CreateNewProductDto } from './dto/create-new-product.dto.js';
 import { ProductsService } from './products.service.js';
 import { UpdateProductDto } from './dto/update-product.dto.js';
-import { AuthGuard } from '../common/guards/auth.guard.js';
+import { JwtAuthGuard } from '../common/auth/jwt-auth-guard.js';
+import { RolesGuard } from '../common/guards/roles.guard.js';
+import { Roles } from '../common/decorators/roles.decorator.js';
 
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles('admin')
 @Controller('products')
 export class ProductsController {
   constructor(private readonly service: ProductsService) {}
 
-  @UseGuards(AuthGuard)
   @Post()
   createNewProduct(@Body() createNewProduct: CreateNewProductDto): any {
     return this.service.Create(createNewProduct);
