@@ -11,11 +11,7 @@ import type { Relation } from 'typeorm';
 
 import * as bcrypt from 'bcrypt';
 import { Order } from '../../orders/entites/order.entity.js';
-
-export enum Role {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-}
+import { Role } from '../../common/enums/role.enum.js';
 
 @Entity({ name: 'users' })
 export class User {

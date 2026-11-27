@@ -12,7 +12,7 @@ import { JwtStrategy } from '../common/auth/jwt.strategy.js';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        secret: configService.getOrThrow<string>('JWT_TOKEN'),
+        secret: configService.getOrThrow<string>('JWT_SECRET'),
         signOptions: { expiresIn: '1h' },
       }),
     }),

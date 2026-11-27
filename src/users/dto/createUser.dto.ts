@@ -1,4 +1,5 @@
-import { IsEmail, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsEnum, IsString, MinLength } from 'class-validator';
+import { Role } from '../../common/enums/role.enum.js';
 
 export class createUserDto {
   @IsString()
@@ -11,4 +12,8 @@ export class createUserDto {
 
   @IsString()
   password: string;
+
+  @IsString()
+  @IsEnum(Role)
+  role: Role = Role.USER;
 }
